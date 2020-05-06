@@ -1,1 +1,2 @@
 /* archivo principal */
+// TODO: Chino
