@@ -1,0 +1,1 @@
+/* Definir el modelo de datos que se va a guardar en json */
