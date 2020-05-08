@@ -12,12 +12,13 @@ const importCSV = async path => {
 
     let csvString = ''
     lines.filter((value, index) => {
-        if (index >= 8) {
+        if (index >= 4) {
             csvString += value + '\n'
         }
     });
 
     return await csvToJson().fromString(csvString);
 }
+
 
 
