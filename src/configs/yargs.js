@@ -27,7 +27,11 @@ const argv = require('yargs')
         }
     })
     .help()
+    .demandCommand(1)
+    .alias('h', 'help')
     .argv;
+
+
 module.exports = {
     argv
 }
