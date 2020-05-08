@@ -1,6 +1,11 @@
 const CSVtoJSON = require('csvtojson');
 
-let load_data = async() => {
-      let csv = await (CSVtoJSON().fromFile('./data1.csv'));
-      return csv;
+let csvData;
+
+let load_data = async () => {
+    let csv = await (CSVtoJSON().fromFile('./doc.csv'));
+    console.log(csv)
+    return csv
 }
+
+load_data()
