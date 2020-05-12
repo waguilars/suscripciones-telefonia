@@ -19,5 +19,13 @@
     "csvtojson": "^2.0.10",
     "yargs": "^15.3.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilsonAG/PW-P56-P1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WilsonAG/PW-P56-P1/issues"
+  },
+  "homepage": "https://github.com/WilsonAG/PW-P56-P1#readme"
 }
