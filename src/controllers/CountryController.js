@@ -156,8 +156,8 @@ const tests = async () => {
     console.log(prom)
 
     // let top = get_top(data, 'Bolivia', 2015)
-    // let top = getAboveAverage(data, 'BOL', 2015)
-    let down = getBelowAverage(data, 'BOL', 2015)
+    let top = getAboveAverage(data, 'Bolivia', 2015)
+    // let down = getBelowAverage(data, 'BOL', 2015)
     // console.log(getTopFive(data, 2015))
     //console.log(prom);
     //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));

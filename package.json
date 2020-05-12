@@ -1,18 +1,23 @@
 {
-    "name": "proyecto-1b",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "chalk": "^4.0.0",
-        "csvtojson": "^2.0.10",
-        "yargs": "^15.3.1"
-    },
-    "devDependencies": {}
+  "name": "pw-proyecto-1b",
+  "version": "1.0.0",
+  "description": "Proyecto del primer parcial de la materia de plataformas web. Aplicacion CLI que muestra informacion de estadisticas de subscripciones de telefonia movil.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Wilson Aguilar <waguilars@est.ups.edu.ec> (https://github.com/WilsonAG)",
+  "contributors": [
+    "Gabriel Cacuango <COMPLETAR@CAMPOS.COM> (HTTPS:COMPLETAR-CAMPOS.COM)",
+    "Ricardo Romo <COMPLETAR@CAMPOS.COM> (HTTPS:COMPLETAR-CAMPOS.COM)",
+    "Bryan Imbaquingo <COMPLETAR@CAMPOS.COM> (HTTPS:COMPLETAR-CAMPOS.COM)"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "csvtojson": "^2.0.10",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {}
 }
