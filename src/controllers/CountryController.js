@@ -104,18 +104,27 @@ const getdata_order = (data, year) => {
 
 const get_top = (data, country, year) => {
     data = getdata_order(data, year);
-    const find = data.find(element => element['pais'] === country)
-    console.log(find);
-
+    const finded = data.find(element => element['pais'] === country)
+    let index = data.indexOf(finded)
+    const paises = []
+    for (let i = 1; i <= 5; i++) {
+        index += 1
+        paises.push({
+            pais: data[index].pais,
+            suscripciones: data[index].suscripciones
+        });
+    }
+    console.log(finded);
+    console.log(paises);
 }
 
 /* pruebas */
 const tests = async() => {
-    let data = await importCSV('C:\\Users\\Gabriel\\Desktop\\archivos\\doc.csv')
+    let data = await importCSV('./data.csv')
     let prom = getAverage(data, 2015)
     let top = get_top(data, 'BOL', 2015)
-    console.log(prom);
-    console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
+        //console.log(prom);
+        //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
 
 }
 
