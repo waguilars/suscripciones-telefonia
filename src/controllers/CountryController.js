@@ -79,11 +79,41 @@ const isGraderThanAverage = (data, year, country, prom) => {
 
 }
 
+/**
+ * Ricardo
+ */
+const getdata_order = (data, year) => {
+    let dato = [];
+    data.forEach(element => {
+        let pais = element['Country Code'];
+        let suscripciones = parseFloat(element[`${year}`]);
+        if (isNaN(suscripciones)) {
+            suscripciones = 0;
+        }
+        //console.log(suscripciones);
+        dato.push({
+            pais,
+            suscripciones
+        });
+    });
+    dato.sort(function(a, b) {
+        return b.suscripciones - a.suscripciones
+    })
+    return dato;
+}
+
+const get_top = (data, country, year) => {
+    data = getdata_order(data, year);
+    const find = data.find(element => element['pais'] === country)
+    console.log(find);
+
+}
 
 /* pruebas */
 const tests = async() => {
     let data = await importCSV('C:\\Users\\Gabriel\\Desktop\\archivos\\doc.csv')
     let prom = getAverage(data, 2015)
+    let top = get_top(data, 'BOL', 2015)
     console.log(prom);
     console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
 
