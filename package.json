@@ -13,7 +13,7 @@
         "Ricardo Romo <rromom@est.ups.edu.ec> (https://github.com/rromom)",
         "Bryan Imbaquingo <bryan_3871@hotmail.com> (https://github.com/bimbaquingoch)"
     ],
-    "license": "ISC",
+    "license": "GNU v3",
     "dependencies": {
         "chalk": "^4.0.0",
         "csvtojson": "^2.0.10",
