@@ -51,7 +51,6 @@ let printData = async() => {
 
     paisesyear.forEach(element => {
         console.log(chalk.blue(element.pais))
-
     });
 }
 
