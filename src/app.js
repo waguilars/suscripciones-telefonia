@@ -2,10 +2,21 @@
 // TODO: Chino
 
 const argv = require('./configs/yargs').argv;
-const tareas = require('./controllers/CountryController')
+const { importCSV, getAverage } = require('./controllers/CountryController')
 const server = require('./server');
 
+
+
 let comand = argv._[0];
+
+console.log(argv.file)
+importCSV(argv.file)
+    .then(data => {
+        let a = getAverage(data, argv.year)
+        console.log(a)
+
+    })
+    .catch(console.log)
 
 
 switch (comand) {
