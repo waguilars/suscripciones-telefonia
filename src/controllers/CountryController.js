@@ -136,6 +136,15 @@ const getTopFive = (data, year) => {
 }
 
 
+const saveData = (data, country, year, name) => {
+    let estadistica = [];
+    let date = JSON.stringify(estadistica);
+    fs.writeFile(`${name}`, date, (err) => {
+        if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS');
+        console.log('The file has been saved!');
+    });
+}
+
 /* pruebas */
 const tests = async() => {
     let data = await importCSV('./data.csv')
@@ -146,6 +155,7 @@ const tests = async() => {
         // console.log(getTopFive(data, 2015))
         //console.log(prom);
         //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
+    saveData(data, 'ECU', 2015, './src/data.json');
 
 }
 
