@@ -28,32 +28,32 @@ const importCSV = async path => {
 }
 
 const getAverage = (data, year) => {
-    if (isNaN(year)) {
-        throw new Error('El año ingresado no es valido.')
-    }
-    let average = 0;
-    data.forEach(element => {
-        let value = parseFloat(element[`${year}`]);
-        //console.log(value)
-        if (!isNaN(value)) {
-            average += value;
+        if (isNaN(year)) {
+            throw new Error('El año ingresado no es valido.')
         }
-    });
-    average = parseFloat((average / data.length).toFixed(2))
-    return average
+        let average = 0;
+        data.forEach(element => {
+            let value = parseFloat(element[`${year}`]);
+            //console.log(value)
+            if (!isNaN(value)) {
+                average += value;
+            }
+        });
+        average = parseFloat((average / data.length).toFixed(2))
+        return average
 
-    /* Validacion del codigo de pais para despues */
-    // let country = data.filter(country => country['Country Code'] === countryCode)
-    // if (country.length === 0) {
-    //     throw new Error(
-    //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
-    // }
+        /* Validacion del codigo de pais para despues */
+        // let country = data.filter(country => country['Country Code'] === countryCode)
+        // if (country.length === 0) {
+        //     throw new Error(
+        //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
+        // }
 
 
 
 
-}
-//Gabriel
+    }
+    //Gabriel
 
 const isHigher = (data, year, country, prom) => {
     let answer = false;
@@ -84,16 +84,18 @@ const getSortedData = (data, year) => {
     data.forEach(element => {
         let pais = element['Country Name'];
         let suscripciones = parseFloat(element[`${year}`]);
+        let codigo = element['Country Code']
         if (isNaN(suscripciones)) {
             suscripciones = 0;
         }
         //console.log(suscripciones);
         dato.push({
             pais,
+            codigo,
             suscripciones
         });
     });
-    dato.sort(function (a, b) {
+    dato.sort(function(a, b) {
         return b.suscripciones - a.suscripciones
     })
     return dato;
@@ -101,33 +103,18 @@ const getSortedData = (data, year) => {
 
 const getBelowAverage = (data, country, year) => {
     data = getSortedData(data, year);
-    const finded = data.find(element => element['pais'] === country)
-    let index = data.indexOf(finded)
-    const paises = []
-    for (let i = 1; i <= 5; i++) {
-        index += 1
-        paises.push({
-            pais: data[index].pais,
-            suscripciones: data[index].suscripciones
-        });
-    }
-    console.log(paises);
+    const finded = data.find(element => element['codigo'] === country)
+    let index = data.indexOf(finded) + 1
+    const paises = data.slice(index, index + 5)
+    return paises
 }
 
 const getAboveAverage = (data, country, year) => {
     data = getSortedData(data, year);
-    const finded = data.find(element => element['pais'] === country)
+    const finded = data.find(element => element['codigo'] === country)
     let index = data.indexOf(finded)
-    paises = [];
-    for (let i = 1; i <= 5; i++) {
-        index -= 1
-        paises.push({
-            pais: data[index].pais,
-            suscripciones: data[index].suscripciones
-        });
-    }
-    console.log(finded);
-    console.log(paises);
+    let paises = data.slice(index - 5, index);
+    return paises
 }
 
 /**
@@ -150,17 +137,15 @@ const getTopFive = (data, year) => {
 
 
 /* pruebas */
-const tests = async () => {
+const tests = async() => {
     let data = await importCSV('./data.csv')
     let prom = getAverage(data, 2015)
-    console.log(prom)
-
-    // let top = get_top(data, 'Bolivia', 2015)
-    let top = getAboveAverage(data, 'Bolivia', 2015)
-    // let down = getBelowAverage(data, 'BOL', 2015)
-    // console.log(getTopFive(data, 2015))
-    //console.log(prom);
-    //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
+    let top = getAboveAverage(data, 'BOL', 2015) //partiendo desde el pais
+    let down = getBelowAverage(data, 'BOL', 2015) //partiendo desde el paise
+        // let down = getBelowAverage(data, 'BOL', 2015)
+        // console.log(getTopFive(data, 2015))
+        //console.log(prom);
+        //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
 
 }
 
