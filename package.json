@@ -17,6 +17,7 @@
     "dependencies": {
         "chalk": "^4.0.0",
         "csvtojson": "^2.0.10",
+        "nodemon": "^2.0.3",
         "yargs": "^15.3.1"
     },
     "devDependencies": {},
