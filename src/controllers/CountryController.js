@@ -137,10 +137,24 @@ const getTopFive = (data, year) => {
 
 
 const saveData = (data, country, year, name) => {
-    let estadistica = [];
-    let date = JSON.stringify(estadistica);
+    let prom = getAverage(data, year)
+    let med = isHigher(data, year, country, prom)
+    let fivemore = getBelowAverage(data, country, year)
+    let fiveless = getAboveAverage(data, country, year)
+    let topfive = getTopFive(data, year)
+
+
+    let estadistica = {
+        Promedio: `${prom}`,
+        Mayor_media: med,
+        Top_5_arriba: fivemore,
+        Top_5_abajo: fiveless,
+        Top_5_year: topfive
+
+    };
+    let date = JSON.stringify(estadistica, null, 2);
     fs.writeFile(`${name}`, date, (err) => {
-        if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS');
+        if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS error en el path');
         console.log('The file has been saved!');
     });
 }
@@ -152,10 +166,10 @@ const tests = async() => {
     let top = getAboveAverage(data, 'BOL', 2015) //partiendo desde el pais
     let down = getBelowAverage(data, 'BOL', 2015) //partiendo desde el paise
         // let down = getBelowAverage(data, 'BOL', 2015)
-        // console.log(getTopFive(data, 2015))
+    console.log(getTopFive(data, 2015))
         //console.log(prom);
         //console.log(isGraderThanAverage(data, 2015, 'ECU', prom));
-    saveData(data, 'ECU', 2015, './src/data.json');
+    saveData(data, 'ECU', 2015, 'C:\\Users\\Gabriel\\Desktop\\prueba\\datito');
 
 }
 
