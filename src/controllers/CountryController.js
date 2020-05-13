@@ -8,7 +8,7 @@ const csvToJson = require('csvtojson');
 const importCSV = async path => {
 
     const csvFile = await fs.readFile(path, 'utf-8')
-        .catch(err => { throw new Error('El archivo no existe.') });
+
 
     let lines = csvFile.split(/\r?\n/);
     let csvString = ''
@@ -28,32 +28,32 @@ const importCSV = async path => {
 }
 
 const getAverage = (data, year) => {
-    if (isNaN(year)) {
-        throw new Error('El año ingresado no es valido.')
-    }
-    let average = 0;
-    data.forEach(element => {
-        let value = parseFloat(element[`${year}`]);
-        //console.log(value)
-        if (!isNaN(value)) {
-            average += value;
+        if (isNaN(year)) {
+            throw new Error('El año ingresado no es valido.')
         }
-    });
-    average = parseFloat((average / data.length).toFixed(2))
-    return average
+        let average = 0;
+        data.forEach(element => {
+            let value = parseFloat(element[`${year}`]);
+            //console.log(value)
+            if (!isNaN(value)) {
+                average += value;
+            }
+        });
+        average = parseFloat((average / data.length).toFixed(2))
+        return average
 
-    /* Validacion del codigo de pais para despues */
-    // let country = data.filter(country => country['Country Code'] === countryCode)
-    // if (country.length === 0) {
-    //     throw new Error(
-    //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
-    // }
+        /* Validacion del codigo de pais para despues */
+        // let country = data.filter(country => country['Country Code'] === countryCode)
+        // if (country.length === 0) {
+        //     throw new Error(
+        //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
+        // }
 
 
 
 
-}
-//Gabriel
+    }
+    //Gabriel
 
 const isHigher = (data, year, country, prom) => {
     let answer = false;
@@ -95,7 +95,7 @@ const getSortedData = (data, year) => {
             suscripciones
         });
     });
-    dato.sort(function (a, b) {
+    dato.sort(function(a, b) {
         return b.suscripciones - a.suscripciones
     })
     return dato;
@@ -127,8 +127,7 @@ const getTopFive = (data, year) => {
     for (let i = 0; i <= data.length; i++) {
         if (i <= 4) {
             paises.push({
-                pais: data[i].pais,
-                suscripciones: data[i].suscripciones
+                pais: data[i].pais
             });
         }
     }
@@ -142,7 +141,6 @@ const saveData = (data, country, year, name) => {
     let fivemore = getBelowAverage(data, country, year)
     let fiveless = getAboveAverage(data, country, year)
     let topfive = getTopFive(data, year)
-
 
     let estadistica = {
         Promedio: `${prom}`,
@@ -161,5 +159,11 @@ const saveData = (data, country, year, name) => {
 
 module.exports = {
     importCSV,
-    getAverage
+    getAverage,
+    isHigher,
+    getSortedData,
+    getBelowAverage,
+    getTopFive,
+    getAboveAverage,
+    saveData
 }
