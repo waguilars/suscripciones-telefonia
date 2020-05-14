@@ -2,7 +2,16 @@
 // TODO: Chino
 const chalk = require('chalk');
 const argv = require('./configs/yargs').argv;
-const { importCSV, getAverage, getBelowAverage, getTopFive, getAboveAverage, getSortedData, isHigher, saveData } = require('./controllers/CountryController')
+const {
+    importCSV,
+    getAverage,
+    getBelowAverage,
+    getTopFive,
+    getAboveAverage,
+    isHigher,
+    saveData,
+    getCountryData
+} = require('./controllers/CountryController')
 const server = require('./server');
 
 let comand = argv._[0];
@@ -12,59 +21,71 @@ let anio = argv.year
 let arch = argv.file
 let save = argv.out
 
-console.log(arch)
-console.log(pais)
-console.log(anio)
 
-let printData = async() => {
+let printData = async () => {
     let data = await importCSV(arch)
+    let country = getCountryData(data, pais, anio)
     let media = getAverage(data, anio)
     let mayor = isHigher(data, anio, pais, media)
 
     console.log(chalk.bgBlueBright(chalk.white(chalk.bold("=========================== RESULTADOS OBTENIDOS ===========================\n"))))
 
     console.log(chalk.cyan(`La media es `) + ` ${chalk.red(media)}`)
+    console.log(chalk.cyan(`${chalk.red(country.nombre)} tiene una valor de suscripcion de ${chalk.red(country.suscripcion)} para el año de ${chalk.red(anio)}`))
     if (mayor == true) {
-        console.log(`El total de suscripciones de ${chalk.bgBlueBright(pais)} es mayor al valor de la media mundial\n`)
+        console.log(`El total de suscripciones de ${chalk.bgBlueBright(country.nombre)} es mayor al valor de la media mundial\n`)
     } else {
-        console.log(chalk.cyan(`El total de suscripciones de `) + `${chalk.red(pais)}` + chalk.cyan(` es menor al valor de la media mundial\n`))
+        console.log(chalk.cyan(`El total de suscripciones de `) + `${chalk.red(country.nombre)}` + chalk.cyan(` es menor al valor de la media mundial\n`))
     }
     //menores
     let paises5mn = getBelowAverage(data, pais, anio)
-        //mayores
+    //mayores
     let paises5my = getAboveAverage(data, pais, anio)
 
 
-    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por encima del total de `))) + chalk.bgBlueBright(chalk.red(chalk.bold(pais))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
-    //console.log(paises5my);
-    paises5my.forEach(element => {
-        console.log(chalk.green(element.pais))
-    });
+    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por encima del total de `))) + chalk.bgBlueBright(chalk.red(chalk.bold(country.nombre))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
+    console.table(paises5my.reverse())
+    // paises5my.forEach(element => {
+    //     console.log(chalk.green(element.pais))
+    // });
 
-    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por debajo del total de `))) + chalk.bgBlueBright(chalk.yellow(chalk.bold(pais))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
-    paises5mn.forEach(element => {
-        console.log(chalk.red(element.pais))
-    });
+    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por debajo del total de `))) + chalk.bgBlueBright(chalk.yellow(chalk.bold(country.nombre))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
+    console.table(paises5mn)
+    // paises5mn.forEach(element => {
+    //     console.log(chalk.red(element.pais))
+    // });
 
     let paisesyear = getTopFive(data, anio)
-    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`======================= Top 5 países para el año `))) + chalk.bgBlueBright(chalk.green(chalk.bold(anio))) + chalk.bgBlueBright(chalk.white(chalk.bold(` =======================`))));
+    console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`======================= Top 5 países para el año `))) + chalk.bgBlueBright(chalk.bold.green(anio)) + chalk.bgBlueBright(chalk.white(chalk.bold(` =======================`))));
+    console.table(paisesyear);
+    // paisesyear.forEach(element => {
+    //     console.log(chalk.blue(element.pais))
+    // });
 
-    paisesyear.forEach(element => {
-        console.log(chalk.blue(element.pais))
-    });
+    return {
+        pais: country,
+        mediaPaises: media,
+        estaPorEncimaMedia: mayor,
+        paisesPorEncima: paises5my,
+        paisesPorDebajo: paises5mn,
+        topFive: paisesyear
+    }
 }
-
 printData()
+    .then((datos) => {
+        // console.log(datos)
+        switch (comand) {
+            case 'publicar':
+                //getAverage(arch, anio)
 
-switch (comand) {
-    case 'publicar':
-        //getAverage(arch, anio)
+                break;
+            case 'guardar':
+                console.log('guardar los resultados');
+                break;
+            default:
+                console.log('Comando no reconocido');
+                break;
+        }
 
-        break;
-    case 'guardar':
-        console.log('guardar los resultados');
-        break;
-    default:
-        console.log('Comando no reconocido');
-        break;
-}
+    })
+    .catch(err => console.log(chalk.bgRedBright.bold.white(err)))
