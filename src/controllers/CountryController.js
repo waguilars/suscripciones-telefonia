@@ -17,6 +17,7 @@ const getCountryData = (data, code, anio) => {
         suscripcion: parseFloat(myCountry[anio]),
         codigo: myCountry['Country Code'],
         nombre: myCountry['Country Name'],
+        anio
     };
 
 
