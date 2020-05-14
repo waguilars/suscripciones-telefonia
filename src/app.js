@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* archivo principal */
 // TODO: Chino
 const chalk = require('chalk');
