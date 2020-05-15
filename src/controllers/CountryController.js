@@ -4,6 +4,8 @@
 
 const { promises: fs } = require('fs');
 const csvToJson = require('csvtojson');
+const open = require('open');
+const chalk = require('chalk');
 
 const getCountryData = (data, code, anio) => {
     const myCountry = data.find(country => country['Country Code'] === code.toUpperCase())
@@ -47,32 +49,32 @@ const importCSV = async path => {
 }
 
 const getAverage = (data, year) => {
-        if (isNaN(year)) {
-            throw new Error('El año ingresado no es valido.')
-        }
-        let average = 0;
-        data.forEach(element => {
-            let value = parseFloat(element[`${year}`]);
-            //console.log(value)
-            if (!isNaN(value)) {
-                average += value;
-            }
-        });
-        average = parseFloat((average / data.length).toFixed(2))
-        return average
-
-        /* Validacion del codigo de pais para despues */
-        // let country = data.filter(country => country['Country Code'] === countryCode)
-        // if (country.length === 0) {
-        //     throw new Error(
-        //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
-        // }
-
-
-
-
+    if (isNaN(year)) {
+        throw new Error('El año ingresado no es valido.')
     }
-    //Gabriel
+    let average = 0;
+    data.forEach(element => {
+        let value = parseFloat(element[`${year}`]);
+        //console.log(value)
+        if (!isNaN(value)) {
+            average += value;
+        }
+    });
+    average = parseFloat((average / data.length).toFixed(2))
+    return average
+
+    /* Validacion del codigo de pais para despues */
+    // let country = data.filter(country => country['Country Code'] === countryCode)
+    // if (country.length === 0) {
+    //     throw new Error(
+    //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
+    // }
+
+
+
+
+}
+//Gabriel
 
 const isHigher = (data, year, country, prom) => {
     let answer = false;
@@ -115,7 +117,7 @@ const getSortedData = (data, year) => {
             suscripciones
         });
     });
-    dato.sort(function(a, b) {
+    dato.sort(function (a, b) {
         return b.suscripciones - a.suscripciones
     })
     return dato;
@@ -162,10 +164,14 @@ const getTopFive = (data, year) => {
 
 const saveData = (datos, path) => {
     let date = JSON.stringify(datos, null, 2);
-    fs.writeFile(`${path}`, date, (err) => {
+    path = `${path}.json`
+    fs.writeFile(path, date, (err) => {
         if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS error en el path');
     });
-    console.log('The file has been saved!');
+    console.log(
+        chalk.cyan('The file has been saved! You can see it in the path: ') +
+        chalk.yellow(path));
+    open(path).catch(console.log)
 }
 
 module.exports = {
