@@ -7,8 +7,8 @@ const port = 3000;
 
 
 
-const startServer = async (data) => {
-    console.log(data)
+const startServer = async(data) => {
+    //console.log(data)
     const server = http.createServer((req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
@@ -89,7 +89,7 @@ const startServer = async (data) => {
         res.end()
     });
 
-    server.listen(port, hostname, async () => {
+    server.listen(port, hostname, async() => {
         console.log(chalk.cyan(`Server running at ${
             chalk.underline.yellow(
                 'http://${hostname}:${port}/')

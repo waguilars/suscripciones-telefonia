@@ -47,32 +47,32 @@ const importCSV = async path => {
 }
 
 const getAverage = (data, year) => {
-    if (isNaN(year)) {
-        throw new Error('El año ingresado no es valido.')
-    }
-    let average = 0;
-    data.forEach(element => {
-        let value = parseFloat(element[`${year}`]);
-        //console.log(value)
-        if (!isNaN(value)) {
-            average += value;
+        if (isNaN(year)) {
+            throw new Error('El año ingresado no es valido.')
         }
-    });
-    average = parseFloat((average / data.length).toFixed(2))
-    return average
+        let average = 0;
+        data.forEach(element => {
+            let value = parseFloat(element[`${year}`]);
+            //console.log(value)
+            if (!isNaN(value)) {
+                average += value;
+            }
+        });
+        average = parseFloat((average / data.length).toFixed(2))
+        return average
 
-    /* Validacion del codigo de pais para despues */
-    // let country = data.filter(country => country['Country Code'] === countryCode)
-    // if (country.length === 0) {
-    //     throw new Error(
-    //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
-    // }
+        /* Validacion del codigo de pais para despues */
+        // let country = data.filter(country => country['Country Code'] === countryCode)
+        // if (country.length === 0) {
+        //     throw new Error(
+        //         'El código del pais no es valido, asegurese de usar la especificación ISO 3166 ALPHA-3.')
+        // }
 
 
 
 
-}
-//Gabriel
+    }
+    //Gabriel
 
 const isHigher = (data, year, country, prom) => {
     let answer = false;
@@ -115,7 +115,7 @@ const getSortedData = (data, year) => {
             suscripciones
         });
     });
-    dato.sort(function (a, b) {
+    dato.sort(function(a, b) {
         return b.suscripciones - a.suscripciones
     })
     return dato;
@@ -160,26 +160,12 @@ const getTopFive = (data, year) => {
 }
 
 
-const saveData = (data, country, year, name) => {
-    let prom = getAverage(data, year)
-    let med = isHigher(data, year, country, prom)
-    let fivemore = getBelowAverage(data, country, year)
-    let fiveless = getAboveAverage(data, country, year)
-    let topfive = getTopFive(data, year)
-
-    let estadistica = {
-        Promedio: `${prom}`,
-        Mayor_media: med,
-        Top_5_arriba: fivemore,
-        Top_5_abajo: fiveless,
-        Top_5_year: topfive
-
-    };
-    let date = JSON.stringify(estadistica, null, 2);
-    fs.writeFile(`${name}`, date, (err) => {
+const saveData = (datos, path) => {
+    let date = JSON.stringify(datos, null, 2);
+    fs.writeFile(`${path}`, date, (err) => {
         if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS error en el path');
-        console.log('The file has been saved!');
     });
+    console.log('The file has been saved!');
 }
 
 module.exports = {
