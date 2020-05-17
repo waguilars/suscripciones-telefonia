@@ -79,6 +79,11 @@ const getAverage = (data, year) => {
         }
     });
     average = parseFloat((average / count).toFixed(2))
+
+    if (!average) {
+        throw new Error('No se puede calcular los datos estadisticos para el año ingresado.')
+    }
+
     return average
 
     /* Validacion del codigo de pais para despues */
