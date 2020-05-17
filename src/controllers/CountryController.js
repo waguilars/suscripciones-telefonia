@@ -6,6 +6,7 @@ const { promises: fs } = require('fs');
 const csvToJson = require('csvtojson');
 const open = require('open');
 const chalk = require('chalk');
+const validCountries = require('../model/includes.json');
 
 const getCountryData = (data, code, anio) => {
     const myCountry = data.find(country => country['Country Code'] === code.toUpperCase())
@@ -27,6 +28,7 @@ const getCountryData = (data, code, anio) => {
 
 const importCSV = async path => {
 
+    const validCodes = validCountries.p_codigo;
     const csvFile = await fs.readFile(path, 'utf-8')
         .catch(err => { throw new Error('El archivo no se encuentra.') })
 
@@ -39,10 +41,24 @@ const importCSV = async path => {
         }
     });
 
-    const csvData = await csvToJson().fromString(csvString);
+    let csvData = await csvToJson().fromString(csvString);
     if (csvData.length === 0) {
         throw new Error('El formato del archivo no es valido.')
     }
+
+    let excludes = []
+    csvData = csvData.filter(country => {
+        let isValid = validCodes.includes(country['Country Code'])
+        if (isValid) {
+            return country
+        } else {
+            excludes.push({
+                name: country['Country Name'],
+                code: country['Country Code'],
+            })
+        }
+
+    })
 
     return csvData;
 
@@ -53,14 +69,16 @@ const getAverage = (data, year) => {
         throw new Error('El año ingresado no es valido.')
     }
     let average = 0;
+    let count = 0
     data.forEach(element => {
         let value = parseFloat(element[`${year}`]);
         //console.log(value)
         if (!isNaN(value)) {
             average += value;
+            count++
         }
     });
-    average = parseFloat((average / data.length).toFixed(2))
+    average = parseFloat((average / count).toFixed(2))
     return average
 
     /* Validacion del codigo de pais para despues */

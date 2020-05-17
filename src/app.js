@@ -24,7 +24,7 @@ let arch = argv.file
 let save = argv.out
 
 
-let printData = async() => {
+let printData = async () => {
     let data = await importCSV(arch)
     let country = getCountryData(data, pais, anio)
     let media = getAverage(data, anio)
@@ -41,21 +41,21 @@ let printData = async() => {
     }
     //menores
     let paises5mn = getBelowAverage(data, pais, anio)
-        //mayores
+    //mayores
     let paises5my = getAboveAverage(data, pais, anio)
 
 
     console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por encima del total de `))) + chalk.bgBlueBright(chalk.red(chalk.bold(country.nombre))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
     console.table(paises5my.reverse())
-        // paises5my.forEach(element => {
-        //     console.log(chalk.green(element.pais))
-        // });
+    // paises5my.forEach(element => {
+    //     console.log(chalk.green(element.pais))
+    // });
 
     console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`==================== Países por debajo del total de `))) + chalk.bgBlueBright(chalk.red(chalk.bold(country.nombre))) + chalk.bgBlueBright(chalk.white(chalk.bold(` ====================`))));
     console.table(paises5mn)
-        // paises5mn.forEach(element => {
-        //     console.log(chalk.red(element.pais))
-        // });
+    // paises5mn.forEach(element => {
+    //     console.log(chalk.red(element.pais))
+    // });
 
     let paisesyear = getTopFive(data, anio)
     console.log(chalk.bgBlueBright(chalk.white(chalk.bold(`======================= Top 5 países para el año `))) + chalk.bgBlueBright(chalk.bold.red(anio)) + chalk.bgBlueBright(chalk.white(chalk.bold(` =======================`))));
@@ -78,9 +78,9 @@ printData()
         // console.log(datos)
         switch (comand) {
             case 'publicar':
-                server.startServer(datos)
-                    .then(console.log(chalk.cyan(`You can visit the url to see the web page.`)))
-                    .catch(err => chalk.bgRed.bold.white(err))
+                // server.startServer(datos)
+                // .then(console.log(chalk.cyan(`You can visit the url to see the web page.`)))
+                // .catch(err => chalk.bgRed.bold.white(err))
                 break;
             case 'guardar':
                 saveData(datos, save)

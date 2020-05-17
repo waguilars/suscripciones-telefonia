@@ -1,6 +1,6 @@
 {
-    "name": "pw-proyecto-1b",
-    "version": "0.0.1",
+    "name": "suscripciones-telefonia",
+    "version": "0.0.5",
     "description": "Proyecto del primer parcial de la materia de plataformas web. Aplicacion CLI que muestra informacion de estadisticas de subscripciones de telefonia movil.",
     "main": "src/app.js",
     "bin": "src/app.js",
