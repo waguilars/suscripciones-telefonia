@@ -5,7 +5,7 @@ const argv = require('yargs')
         file: {
             requiere: true,
             alias: 'f',
-            desc: ' Permite establecer el path del archivo CSV que contiene los datos a analizar'
+            desc: ' Permite establecer el path del archivo CSV que contiene los datos a analizar',
         },
         country: {
             require: true,
@@ -13,7 +13,7 @@ const argv = require('yargs')
             desc: ' Permite determinar el país a analizar a través de su código ISO 3166 ALPHA-3 '
         },
         year: {
-            requiere: true,
+
             alias: 'y',
             default: '2018',
             desc: ' Permite especificar el año para el cual se requiere las estadísticas. Por defecto, 2018'
@@ -31,7 +31,7 @@ const argv = require('yargs')
             desc: ' Permite determinar el país a analizar a través de su código ISO 3166 ALPHA-3 '
         },
         year: {
-            requiere: true,
+
             alias: 'y',
             default: '2018',
             desc: ' Permite especificar el año para el cual se requiere las estadísticas. Por defecto, 2018'
