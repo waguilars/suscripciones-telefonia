@@ -78,9 +78,9 @@ printData()
         // console.log(datos)
         switch (comand) {
             case 'publicar':
-                // server.startServer(datos)
-                // .then(console.log(chalk.cyan(`You can visit the url to see the web page.`)))
-                // .catch(err => chalk.bgRed.bold.white(err))
+                server.startServer(datos)
+                    .then(console.log(chalk.cyan(`You can visit the url to see the web page.`)))
+                    .catch(err => chalk.bgRed.bold.white(err))
                 break;
             case 'guardar':
                 saveData(datos, save)
