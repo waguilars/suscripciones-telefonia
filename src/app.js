@@ -92,3 +92,4 @@ printData()
         }
 
     })
+    .catch(err => console.log(chalk.bgRed.bold.white(err)))
