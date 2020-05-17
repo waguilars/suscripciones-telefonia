@@ -80,10 +80,11 @@ printData()
             case 'publicar':
                 server.startServer(datos)
                     .then(console.log(chalk.cyan(`You can visit the url to see the web page.`)))
-                    .catch(err => chalk.bgRed.bold.white(err))
+                    .catch(err => console.log(chalk.bgRed.bold.white(err)))
                 break;
             case 'guardar':
                 saveData(datos, save)
+                    .catch(err => console.log(chalk.bgRed.bold.white(err)))
                 break;
             default:
                 console.log('Comando no reconocido');
@@ -91,4 +92,3 @@ printData()
         }
 
     })
-    .catch(err => console.log(chalk.bgRedBright.bold.white(err)))

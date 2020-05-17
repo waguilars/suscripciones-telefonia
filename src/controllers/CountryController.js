@@ -12,7 +12,8 @@ const getCountryData = (data, code, anio) => {
     const myCountry = data.find(country => country['Country Code'] === code.toUpperCase())
 
     if (!myCountry) {
-        throw new Error('El codigo de pais o el anio no son validos.')
+        throw new Error(
+            'No podemos obtener datos para el pais especificado, no se encuentra en la lista de datos o el formato no es valido. Use el estandar ISO 3166-ALPHA-3.')
     }
 
 
@@ -185,16 +186,19 @@ const getTopFive = (data, year) => {
 }
 
 
-const saveData = (datos, path) => {
+const saveData = async (datos, path) => {
     let date = JSON.stringify(datos, null, 2);
     path = `${path}.json`
-    fs.writeFile(path, date, (err) => {
-        if (err) throw new Error('NO SE PUDO EL ARCHIVO JSON CON LAS ESTADISTICAS error en el path');
-    });
-    console.log(
-        chalk.cyan('The file has been saved! You can see it in the path: ') +
-        chalk.yellow(path));
-    open(path).catch(console.log)
+    try {
+        await fs.writeFile(path, date)
+        console.log(
+            chalk.cyan('The file has been saved! You can see it in the path: ') +
+            chalk.yellow(path));
+        await open(path)
+
+    } catch (error) {
+        throw new String('Error al guardar el archivo, no tiene permisos')
+    }
 }
 
 module.exports = {
