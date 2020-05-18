@@ -31,7 +31,7 @@ Los archivos del proyecto se han realizado para una mejor manipulación y estruc
 
 ## Primeros pasos 🚀
 
-Lo primero en nuestro proyecto clonar el proyecto de Git en el directorio que deseamos.
+Lo primero en nuestro proyecto es clonar el proyecto de Git en el directorio que deseamos.
 
   
 
