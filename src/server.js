@@ -12,80 +12,139 @@ const startServer = async(data) => {
     const server = http.createServer((req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
-        res.write(`
-        <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-</head>
-
-<body>
-    <!-- Just an image -->
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Plataformas Web - Proyecto IB</a>
-    </nav>
-
-    <div class="container">
-        <h1 class="text-center my-3">Datos estadisticos</h1>
-        <h3>Resultados para el año: ${data.pais.anio}</h3>
-        <p>Valor de la media: <span>${data.mediaPaises}</span> </p>
-        <p>Valor de subscripcion es mayor a la media??: <span>${data.estaPorEncimaMedia}</span> </p>
-        <h3>Pais especificado: <span>${data.pais.nombre}</span> - Suscripcion: ${data.pais.suscripcion}</h3>
-        <p>Paises por encima del valor de la subscripcion</p>
-        <ol>
-        `)
-
+        res.write(`<!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+        </head>
+        
+        <body>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">
+            Plataformas Web - Proyecto IB
+            </a>
+            </nav>
+            <div class="jumbotron">
+                <h1 class="text-center">DATOS ESTADÍSTICOS</h1>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                            <div class="card-header">Año ${data.pais.anio}</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Media Suscripciones</h4>
+                                <p class="card-text">${data.mediaPaises}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                            <div class="card-header">País: ${data.pais.nombre}</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Suscripciones</h4>
+                                <p class="card-text">${data.pais.suscripcion}
+                                    <p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                            <div class="card-header">Estado</div>
+                            <div class="card-body">
+                                <h4 class="card-title">¿Mayor a la media?</h4>
+                                <p class="card-text">${data.estaPorEncimaMedia}
+                                    <p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <h4>Paises por encima del valor de la subscripcion</h4>
+                    </p>`)
+        res.write(`<table class="table table-hover">
+        <thead>
+            <tr class="table-success">
+                <th scope="row">#</th>
+                <td>Pais</td>
+                <td>Suscripciones</td>
+            </tr>
+        </thead>
+        <tbody>`)
+        let con1 = 0;
         data.paisesPorEncima.forEach(element => {
-            res.write(`<li>${element.pais} con suscripcion de ${element.suscripciones}</li >`)
+            con1 += 1
+            res.write(`<tr>
+                 <th scope = "row" > ${con1} </th> 
+                 <td>${element.pais}</td> 
+                 <td>${element.suscripciones}</td> </tr> `)
         });
-
-
-        res.write(
-            ` </ol >
-            <p>Paises por debajo del valor de la subscripcion</p>
-            <ol>`
-        )
-
+        res.write(`</tbody>
+    </table> <p>
+    <h4>Paises por debajo del valor de la subscripcion</h4>
+</p>
+<table class="table table-hover">
+            <thead>
+                <tr class="table-danger">
+                    <th scope="row">#</th>
+                    <td>Pais</td>
+                    <td>Suscripciones</td>
+                </tr>
+            </thead>
+            <tbody>`);
+        con1 = 0
         data.paisesPorDebajo.forEach(element => {
-            res.write(`<li>${element.pais} con suscripcion de ${element.suscripciones}</li >`)
+            con1 += 1
+            res.write(`<tr>
+            <th scope="row">${con1}</th>
+            <td>${element.pais}</td>
+            <td>${element.suscripciones}</td>
+        </tr>`)
         });
 
-        res.write(`
-        </ol >
-        <p>Top 5 paises</p>
-        <ol>
-        `)
+        res.write(` </tbody>
+            </table>  <p>
+            <h4>Top 5 paises</h4>
+        </p>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-success">
+                    <th scope="row">#</th>
+                    <td>Pais</td>
+                    <td>suscripciones</td>
+                </tr>
+            </thead>
+            <tbody>`);
+        con1 = 0
         data.topFive.forEach(element => {
-            res.write(`<li>${element.pais} con suscripcion de ${element.suscripciones}</li >`)
+            con1 += 1;
+            res.write(` <tr>
+            <th scope="row">${con1}</th>
+            <td>${element.pais}</td>
+            <td> ${element.suscripciones}</td>
+        </tr>`)
         });
-
-        res.write(`
-        </ol >
-    
-        </div >
-
-    <footer class="bg-dark text-white position-relative text-center" style="bottom: 0;">
-        <p>&copy; Universidad Politecnica Salesiana</p>
-        <ul class="mh-100" style="list-style: none;">
-            <li>Wilson Aguilar</li>
-            <li>Gabriel Cacuango</li>
-            <li>Bryan Imbaquingo</li>
-            <li>Ricardo Romo</li>
-        </ul>
-    </footer>
-    </body >
-    </html >
-
-    `)
-
-
-
+        res.write(` </tbody>
+            </table>
+            </div>
+                    <nav class="navbar-expand-lg navbar-dark bg-primary">
+                        <p align="center">&copy; Universidad Politecnica Salesiana
+                        <br>
+                        Aguilar Wilson
+                        <br>
+                        Cacuango Gabriel
+                        <br>
+                        Imbaquingo Bryan
+                        <br>
+                        Romo Ricardo   
+                        </p>
+                        
+                    </nav>
+                </body>
+                
+                </html>`);
         res.end()
     });
 
