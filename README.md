@@ -88,7 +88,7 @@ Para poder inicializar y clonar nuestro repositorio nos dirigimos a la pagina de
 ![Descripcion del repositorio](https://help.github.com/assets/images/help/repository/remotes-url.png)
 
 **Segundo paso** 
-Luego de copiado el enlace nos dirigimos a nuestra terminal y colocamos git clone seguido del enlace copiado ej:
+Luego de copiar el enlace nos dirigimos a nuestra terminal y colocamos git clone seguido del enlace copiado ej:
 
 ```
 git clone https://github.com/WilsonAG/PW-P56-P1.git
@@ -100,14 +100,14 @@ Se cargaran los archivos correspondientes para nuestro proyecto.
 
 #### Librerías
 
-Ejecutar el siguiente comando el cual instalara los módulos necesarios para su correcto funcionamiento ya que los módulos no vienen en el modulo de git ya que ocupa espacio en memoria de nuestro proyecto y también nos ayuda a verificar el funcionamiento de las librerías:
+Al ejecutar el siguiente comando, ayudara a intalar los modulos necesarios para el correcto funcionamiento del programa desarrollado debido a que estos modulos no estan incluidos dentro del repositorio de git por uso inesesario de memoria; A demas este comando nos ayuda a verificar el funcionamiento de las librerias.
 ```
 npm install
 ```
 
 ### Usando npm
 
-El proyecto tambien esta alojando en npm para una instalacion mucho mas sencilla. Para ello lo instalamos de la siguiente manera.
+El proyecto tambien esta alojando en npm para una instalacion mucho mas sencilla. Para ello insertaremos en la terminal los siguientes comados:
 
 Como comando global en el sistema:
 
