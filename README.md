@@ -1,15 +1,21 @@
 # Universidad Politécnica Salesiana
 <p align="center">
     <a href="https://github.com/WilsonAG/PW-P56-P1/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/static/v1?label=Equipo&message=Universidad_Politecnica_Salesiana&color=blue" /></a>
+        <img src="https://img.shields.io/static/v1?label=Equipo&message=Universidad%20Politecnica%20Salesiana&color=blue" /></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/blob/master/LICENSE.md">
         <img src="https://img.shields.io/github/license/WilsonAG/PW-P56-P1?color=green&logoColor=black&style=flat-square" /></a>
-    <a href="https://github.com/WilsonAG/PW-P56-P1/network">
-        <img src="https://img.shields.io/github/forks/WilsonAG/PW-P56-P1" /></a>
+    <a href="https://github.com/WilsonAG/PW-P56-P1/">
+        <img src="https://img.shields.io/badge/stored%20at-github-blue?style=plastic&logo=github" /></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/stargazers">
-        <img src="https://img.shields.io/github/stars/WilsonAG/PW-P56-P1?color=yellow"></a>
+        <img src="https://img.shields.io/github/stars/WilsonAG/PW-P56-P1?color=yellow&style=plastic&logo=macys"></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/commits/master">
-        <img src="https://img.shields.io/badge/Commits-52-red"></a>    
+        <img src="https://img.shields.io/badge/Commits-52-red?style=plastic&logo=git"></a>    
+    <a href="https://www.npmjs.com/package/suscripciones-telefonia">
+        <img src="https://img.shields.io/badge/npm-v1.0-orange?style=plastic&logo=npm"></img>
+    </a>
+    <a href="https://www.npmjs.com/package/csvtojson">
+        <img src="https://img.shields.io/badge/made%20with-nodejs-green?style=plastic&logo=node.js"></img>
+    </a>
 </p>
 
 
@@ -166,9 +172,9 @@ Este comando almacenará los resultados de las estadísticas en un archivo **jso
 ⚙️**Ejemplo de ejecución:**
 
 ```
-node src\app.js guardar -o"[direccion a guardar]"
+node src\app.js guardar publicar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
 
-suscripciones-telefonia guardar -o"[direccion a guardar]"
+suscripciones-telefonia guardar publicar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
 
 ```
 
@@ -180,14 +186,16 @@ suscripciones-telefonia guardar -o"[direccion a guardar]"
 
 Las siguientes herramientas fueron usadas para la creación del proyecto
 
-  
-
 *  [NodeJS](https://nodejs.org/es/) - entorno de ejecución para JavaScript construido con el motor de JavaScript V8 de Chrome.
+
 *  [Chalk](https://www.npmjs.com/package/chalk) - Permite determinar y establecer colores a la salida del terminal para visualizar resultados de mejor manera.
-*[Yargs](https://www.npmjs.com/package/yargs)- Yargs te ayuda a crear herramientas interactivas de línea de comandos, analizando argumentos y generando una elegante interfaz de usuario.
-*[Open](https://www.npmjs.com/package/open)-Utilizado para abrir cosas como URL, archivos, ejecutables. Multiplataforma.
+
+* [Yargs](https://www.npmjs.com/package/yargs)- Yargs te ayuda a crear herramientas interactivas de línea de comandos, analizando argumentos y generando una elegante interfaz de usuario.
+
+* [Open](https://www.npmjs.com/package/open)-Utilizado para abrir cosas como URL, archivos, ejecutables. Multiplataforma.
 Está destinado a usarse en herramientas de línea de comandos y scripts, no en el navegador.
-*[csvtojson](https://www.npmjs.com/package/csvtojson) - Nos permite convertir un formato csv a json.
+
+* [csvtojson](https://www.npmjs.com/package/csvtojson) - Nos permite convertir un formato csv a json.
 
 
 ## Autores ✒️
