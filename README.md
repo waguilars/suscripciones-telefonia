@@ -1,9 +1,10 @@
-# Universidad Politécnica Salesiana
+# Suscripciones de telefonia móvil celular
+
 <p align="center">
     <a href="https://github.com/WilsonAG/PW-P56-P1/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/static/v1?label=Equipo&message=Universidad%20Politecnica%20Salesiana&color=blue" /></a>
+        <img src="https://img.shields.io/static/v1?label=Equipo&message=Universidad%20Politecnica%20Salesiana&color=blue&style=plastic" /></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/blob/master/LICENSE.md">
-        <img src="https://img.shields.io/github/license/WilsonAG/PW-P56-P1?color=green&logoColor=black&style=flat-square" /></a>
+        <img src="https://img.shields.io/github/license/WilsonAG/PW-P56-P1?color=green&logoColor=black&style=plastic" /></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/">
         <img src="https://img.shields.io/badge/stored%20at-github-blue?style=plastic&logo=github" /></a>
     <a href="https://github.com/WilsonAG/PW-P56-P1/stargazers">
