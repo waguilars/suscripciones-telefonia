@@ -3,7 +3,7 @@
 const argv = require('yargs')
     .command('publicar', ' Publica las estadisticas de una pagina web', {
         file: {
-            requiere: true,
+            require: true,
             alias: 'f',
             desc: ' Permite establecer el path del archivo CSV que contiene los datos a analizar',
         },
@@ -21,7 +21,7 @@ const argv = require('yargs')
     })
     .command('guardar', 'Almacena los resultados de las estadisticas de un archivo', {
         file: {
-            requiere: true,
+            require: true,
             alias: 'f',
             desc: ' Permite establecer el path del archivo CSV que contiene los datos a analizar'
         },
@@ -31,15 +31,14 @@ const argv = require('yargs')
             desc: ' Permite determinar el país a analizar a través de su código ISO 3166 ALPHA-3 '
         },
         year: {
-
             alias: 'y',
             default: '2018',
             desc: ' Permite especificar el año para el cual se requiere las estadísticas. Por defecto, 2018'
         },
         out: {
-            requiere: true,
+            require: true,
             alias: 'o',
-            desc: 'Establece el nombre del archivo donde se almacenará los resultados'
+            desc: ' Establece el nombre del archivo donde se almacenará los resultados'
         }
     })
     .help()
