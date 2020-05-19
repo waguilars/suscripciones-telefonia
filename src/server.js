@@ -8,11 +8,11 @@ const port = 3000;
 
 
 const startServer = async(data) => {
-    //console.log(data)
-    const server = http.createServer((req, res) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.write(`<!DOCTYPE html>
+        //console.log(data)
+        const server = http.createServer((req, res) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html');
+            res.write(`<!DOCTYPE html>
         <html lang="en">
         
         <head>
@@ -64,7 +64,7 @@ const startServer = async(data) => {
                 <div class="container">
                     <h4>Paises por encima del valor de la subscripcion</h4>
                     `)
-        res.write(`<table class="table table-hover">
+            res.write(`<table class="table table-hover">
         <thead>
             <tr class="table-success">
                 <th scope="row">#</th>
@@ -73,15 +73,15 @@ const startServer = async(data) => {
             </tr>
         </thead>
         <tbody>`)
-        let con1 = 0;
-        data.paisesPorEncima.forEach(element => {
-            con1 += 1
-            res.write(`<tr>
+            let con1 = 0;
+            data.paisesPorEncima.forEach(element => {
+                con1 += 1
+                res.write(`<tr>
                  <th scope = "row" > ${con1} </th> 
                  <td>${element.pais}</td> 
                  <td>${element.suscripciones}</td> </tr> `)
-        });
-        res.write(`</tbody>
+            });
+            res.write(`</tbody>
     </table> 
     <h4>Paises por debajo del valor de la subscripcion</h4>
 
@@ -94,17 +94,17 @@ const startServer = async(data) => {
                 </tr>
             </thead>
             <tbody>`);
-        con1 = 0
-        data.paisesPorDebajo.forEach(element => {
-            con1 += 1
-            res.write(`<tr>
+            con1 = 0
+            data.paisesPorDebajo.forEach(element => {
+                con1 += 1
+                res.write(`<tr>
             <th scope="row">${con1}</th>
             <td>${element.pais}</td>
             <td>${element.suscripciones}</td>
         </tr>`)
-        });
+            });
 
-        res.write(` </tbody>
+            res.write(` </tbody>
             </table>  
             <h4>Top 5 paises</h4>
         
@@ -117,16 +117,16 @@ const startServer = async(data) => {
                 </tr>
             </thead>
             <tbody>`);
-        con1 = 0
-        data.topFive.forEach(element => {
-            con1 += 1;
-            res.write(` <tr>
+            con1 = 0
+            data.topFive.forEach(element => {
+                con1 += 1;
+                res.write(` <tr>
             <th scope="row">${con1}</th>
             <td>${element.pais}</td>
             <td> ${element.suscripciones}</td>
         </tr>`)
-        });
-        res.write(` </tbody>
+            });
+            res.write(` </tbody>
             </table>
             </div>
             </div>
@@ -147,13 +147,13 @@ const startServer = async(data) => {
                 </body>
                 
                 </html>`);
-        res.end()
-    });
+            res.end()
+        });
 
-    server.listen(port, hostname, async() => {
-        console.log(chalk.cyan(`Server running at ${
+        server.listen(port, hostname, async() => {
+                    console.log(chalk.cyan(`Server running at ${
             chalk.underline.yellow(
-                'http://${hostname}:${port}/')
+                `http://${hostname}:${port}/`)
             } `));
 
         await open(`http://${hostname}:${port}/`);
