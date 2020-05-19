@@ -32,7 +32,7 @@ const startServer = async(data) => {
                 <h1 class="text-center">DATOS ESTADÍSTICOS</h1>
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                        <div class="card border-success mb-4 zoom " style="max-width: 25rem;">
                             <div class="card-header">Año ${data.pais.anio}</div>
                             <div class="card-body">
                                 <h4 class="card-title">Media Suscripciones</h4>
@@ -41,7 +41,7 @@ const startServer = async(data) => {
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                        <div class="card border-success mb-4 zoom" style="max-width: 25rem;">
                             <div class="card-header">País: ${data.pais.nombre}</div>
                             <div class="card-body">
                                 <h4 class="card-title">Suscripciones</h4>
@@ -51,7 +51,7 @@ const startServer = async(data) => {
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="card border-success mb-4" style="max-width: 25rem;">
+                        <div class="card border-success mb-4 zoom" style="max-width: 25rem;">
                             <div class="card-header">Estado</div>
                             <div class="card-body">
                                 <h4 class="card-title">¿Mayor a la media?</h4>
@@ -144,6 +144,16 @@ const startServer = async(data) => {
                 <li>Romo Ricardo</li>
             </ol>
         </footer>
+        <style>
+        .zoom {
+            transition: transform .2s;
+        }
+        
+        .zoom:hover {
+            transform: scale(1.05);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+    </style>
                 </body>
                 
                 </html>`);
