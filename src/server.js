@@ -61,9 +61,9 @@ const startServer = async(data) => {
                         </div>
                     </div>
                 </div>
-                <p>
+                <div class="container">
                     <h4>Paises por encima del valor de la subscripcion</h4>
-                    </p>`)
+                    `)
         res.write(`<table class="table table-hover">
         <thead>
             <tr class="table-success">
@@ -82,9 +82,9 @@ const startServer = async(data) => {
                  <td>${element.suscripciones}</td> </tr> `)
         });
         res.write(`</tbody>
-    </table> <p>
+    </table> 
     <h4>Paises por debajo del valor de la subscripcion</h4>
-</p>
+
 <table class="table table-hover">
             <thead>
                 <tr class="table-danger">
@@ -105,9 +105,9 @@ const startServer = async(data) => {
         });
 
         res.write(` </tbody>
-            </table>  <p>
+            </table>  
             <h4>Top 5 paises</h4>
-        </p>
+        
         <table class="table table-hover">
             <thead>
                 <tr class="table-success">
@@ -129,19 +129,21 @@ const startServer = async(data) => {
         res.write(` </tbody>
             </table>
             </div>
-                    <nav class="navbar-expand-lg navbar-dark bg-primary">
-                        <p align="center">&copy; Universidad Politecnica Salesiana
-                        <br>
-                        Aguilar Wilson
-                        <br>
-                        Cacuango Gabriel
-                        <br>
-                        Imbaquingo Bryan
-                        <br>
-                        Romo Ricardo   
-                        </p>
-                        
-                    </nav>
+            </div>
+            <footer class="bg-dark bg-primary d-flex flex-column text-center">
+            © Universidad Politecnica Salesiana
+    
+            <ol style="list-style:none;">
+    
+                <li>Aguilar Wilson</li>
+    
+                <li>Cacuango Gabriel</li>
+    
+                <li>Imbaquingo Bryan</li>
+    
+                <li>Romo Ricardo</li>
+            </ol>
+        </footer>
                 </body>
                 
                 </html>`);
