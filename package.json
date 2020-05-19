@@ -1,6 +1,6 @@
 {
     "name": "suscripciones-telefonia",
-    "version": "0.0.6",
+    "version": "1.0.0",
     "description": "Proyecto del primer parcial de la materia de plataformas web. Aplicacion CLI que muestra informacion de estadisticas de subscripciones de telefonia movil.",
     "main": "src/app.js",
     "bin": "src/app.js",
@@ -14,7 +14,7 @@
         "Ricardo Romo <rromom@est.ups.edu.ec> (https://github.com/rromom)",
         "Bryan Imbaquingo <bryan_3871@hotmail.com> (https://github.com/bimbaquingoch)"
     ],
-    "license": "GNU v3",
+    "license": "GPL-3.0",
     "dependencies": {
         "chalk": "^4.0.0",
         "csvtojson": "^2.0.10",
