@@ -173,9 +173,9 @@ Este comando almacenará los resultados de las estadísticas en un archivo **jso
 ⚙️**Ejemplo de ejecución:**
 
 ```
-node src\app.js guardar publicar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
+node src\app.js guardar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
 
-suscripciones-telefonia guardar publicar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
+suscripciones-telefonia guardar -f "[direccion del archivo csv]" -c "ECU" -y 2015 -o"[direccion a guardar]"
 
 ```
 
